@@ -31,7 +31,6 @@ assert sys.version_info[0] == 3 and sys.version_info[1] >= 7, \
 
 
 TEST_PATH = os.path.dirname(__file__)
-ROLE_PATH = os.path.join(TEST_PATH, '..', 'roles', 'run_tests')
 
 
 class AnsibleTestRunnerAcceptanceTests(unittest.TestCase):
@@ -40,8 +39,7 @@ class AnsibleTestRunnerAcceptanceTests(unittest.TestCase):
         logger.debug("Running Ansible test suite: %s", test_suite)
 
         self.r = subprocess.run(
-            ["ansible-playbook", test_suite, 
-             "-e", f"run_tests_role_path={ROLE_PATH}"],
+            ["ansible-playbook", test_suite],
             capture_output=True, text=True)
         logger.debug("Test return code: %s", self.r.returncode)
         logger.debug("Test stdout: %s", self.r.stdout)
