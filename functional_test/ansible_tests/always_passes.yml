@@ -1,2 +1,1 @@
-- debug:
-    msg: This test passed!
+- debug: msg="This test passed!"
