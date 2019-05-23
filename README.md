@@ -1,4 +1,4 @@
-# ansible-tset-runner
+# ansible-test-runner
 
 An extremely simple test runner for Ansible.
 
