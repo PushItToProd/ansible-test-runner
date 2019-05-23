@@ -1,0 +1,12 @@
+- set_fact:
+    failed_test_cases: []
+
+- loop: "{{ test_cases }}"
+  loop_control:
+    loop_var: test_case
+  include_tasks: run_test_case.yml
+
+- debug: msg="Ran {{ test_cases | length }} tests and {{ failed_test_cases | length }} failed."
+
+# - fail: msg="There were failing test cases."
+#   when: failed_test_cases | length > 0

@@ -1,0 +1,4 @@
+- block:
+    - include: "{{ test_case }}"
+  rescue:
+    - set_fact: failed_test_cases="{{ failed_test_cases + [test_case] }}"
