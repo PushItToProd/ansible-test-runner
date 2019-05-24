@@ -23,8 +23,8 @@ jobs:
           - "./venv"
 
       - run:
-          command: venv/bin/python -m xmlrunner -o ../test-results/functional_test
           working_directory: ~/ansible-test-runner/functional_test
+          command: ../venv/bin/python -m xmlrunner -o ../test-results/functional_test
 
       - store_test_results:
           path: test-results
