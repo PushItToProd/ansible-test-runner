@@ -24,7 +24,9 @@ jobs:
 
       - run:
           working_directory: ~/ansible-test-runner/functional_test
-          command: ../venv/bin/python -m xmlrunner -o ../test-results/functional_test
+          command: |
+            source ../venv/bin/activate
+            python -m xmlrunner -o ../test-results/functional_test
 
       - store_test_results:
           path: test-results
