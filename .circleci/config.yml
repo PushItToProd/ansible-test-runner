@@ -5,25 +5,28 @@ jobs:
     docker:
       - image: circleci/python:3.7
     steps:
+      - checkout
+
       - restore_cache:
           keys:
-          - deps-{{ .Branch }}-{{ .Revision }}
-          - deps-{{ .Branch }}
+          - deps-{{ checksum "requirements.txt" }}
           - deps-
-      - checkout
+
       - run: |
           python3.7 -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
+
       - save_cache:
           keys:
-          - deps-{{ .Branch }}-{{ .Revision }}
-          - deps-{{ .Branch }}
+          - deps-{{ checksum "requirements.txt" }}
           - deps-
           paths:
-          - "venv"
+          - "./venv"
+
       - run:
           command: venv/bin/python -m xmlrunner -o ../test-results/functional_test
           working_directory: ~/ansible-test-runner/functional_test
+
       - store_test_results:
           path: test-results
